@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Report Issue - ICT Helpdesk{% endblock %}
+
+{% block content %}
+<section class="page-heading">
+    <h2>Report an ICT Issue</h2>
+    <p>Submit computer, printer, network, account, or software problems to the ICT team.</p>
+</section>
+
+<form action="{{ url_for('home') }}" method="post" class="ticket-form">
+    <label for="name">Full name</label>
+    <input id="name" type="text" name="name" required>
+
+    <label for="department">Department</label>
+    <input id="department" type="text" name="department" required>
+
+    <label for="issue_type">Issue type</label>
+    <select id="issue_type" name="issue_type" required>
+        <option value="">Select issue type</option>
+        <option>Computer Problem</option>
+        <option>Printer Problem</option>
+        <option>Network Problem</option>
+        <option>Email or Account Problem</option>
+        <option>Software Problem</option>
+        <option>Other</option>
+    </select>
+
+    <label for="priority">Priority</label>
+    <select id="priority" name="priority" required>
+        <option>Low</option>
+        <option selected>Medium</option>
+        <option>High</option>
+        <option>Critical</option>
+    </select>
+
+    <label for="description">Description</label>
+    <textarea id="description" name="description" rows="6" required></textarea>
+
+    <button type="submit">Submit Ticket</button>
+</form>
+{% endblock %}

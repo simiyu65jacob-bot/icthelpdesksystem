@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block title %}Tickets - ICT Helpdesk{% endblock %}
+
+{% block content %}
+<section class="page-heading">
+    <h2>Submitted Tickets</h2>
+    <p>Search, review, and resolve ICT support requests.</p>
+</section>
+
+<section class="panel">
+    <input type="text" id="search" class="search-box" placeholder="Search tickets">
+
+    {% if tickets %}
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Department</th>
+                    <th>Issue Type</th>
+                    <th>Priority</th>
+                    <th>Status</th>
+                    <th>Created</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ticket in tickets %}
+                    <tr>
+                        <td>#{{ ticket.id }}</td>
+                        <td>{{ ticket.name }}</td>
+                        <td>{{ ticket.department }}</td>
+                        <td>{{ ticket.issue_type }}</td>
+                        <td><span class="priority {{ ticket.priority|lower }}">{{ ticket.priority }}</span></td>
+                        <td><span class="status {{ ticket.status|lower }}">{{ ticket.status }}</span></td>
+                        <td>{{ ticket.created_at }}</td>
+                        <td>
+                            {% if ticket.status != "Resolved" %}
+                                <form action="{{ url_for('resolve_ticket', ticket_id=ticket.id) }}" method="post" class="inline-form">
+                                    <button type="submit">Resolve</button>
+                                </form>
+                            {% else %}
+                                Done
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr class="description-row">
+                        <td colspan="8">{{ ticket.description }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p class="empty-state">No tickets submitted yet.</p>
+    {% endif %}
+</section>
+{% endblock %}
+<td>{{ ticket.status }}</td>
+
+<td>
+
+    {% if ticket.status == "Pending" %}
+    <form action="{{ url_for('progress_ticket', ticket_id=ticket.id) }}" method="POST">
+        <button type="submit">
+            Start Work
+        </button>
+    </form>
+    {% endif %}
+
+    {% if ticket.status != "Resolved" %}
+    <form action="{{ url_for('resolve_ticket', ticket_id=ticket.id) }}" method="POST">
+        <button type="submit">
+            Resolve
+        </button>
+    </form>
+    {% endif %}
+
+    <form action="{{ url_for('delete_ticket', ticket_id=ticket.id) }}" method="POST">
+        <button type="submit">
+            Delete
+        </button>
+    </form>
+
+</td>
+<form method="GET">
+
+    <input
+        type="text"
+        name="search"
+        placeholder="Search tickets..."
+        value="{{ search }}"
+    >
+
+    <button type="submit">
+        Search
+    </button>
+
+</form>
+<table>
+    ...
+</table>

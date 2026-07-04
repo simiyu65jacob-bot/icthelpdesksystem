@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - ICT Helpdesk{% endblock %}
+
+{% block content %}
+<section class="page-heading">
+    <h2>Dashboard</h2>
+    <p>Quick view of ticket activity and ICT workload.</p>
+</section>
+
+<section class="cards">
+    <article class="card">
+        <h3>Total Tickets</h3>
+        <p>{{ total_tickets }}</p>
+    </article>
+
+    <article class="card">
+        <h3>Pending</h3>
+        <p>{{ pending_tickets }}</p>
+    </article>
+
+    <article class="card">
+        <h3>Resolved</h3>
+        <p>{{ resolved_tickets }}</p>
+    </article>
+
+    <article class="card">
+        <h3>High Priority</h3>
+        <p>{{ high_priority_tickets }}</p>
+    </article>
+</section>
+
+<section class="panel">
+    <h3>Tickets by Department</h3>
+    {% if department_counts %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Department</th>
+                    <th>Total Tickets</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for department, count in department_counts.items() %}
+                    <tr>
+                        <td>{{ department }}</td>
+                        <td>{{ count }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p class="empty-state">No tickets have been submitted yet.</p>
+    {% endif %}
+</section>
+{% endblock %}

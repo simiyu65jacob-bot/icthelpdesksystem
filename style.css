@@ -1,0 +1,290 @@
+:root{
+    --blue:#2563eb;
+    --blue-dark:#1d4ed8;
+    --ink:#172033;
+    --muted:#64748b;
+    --line:#dbe3ef;
+    --panel:#ffffff;
+    --page:#f4f7fb;
+    --success:#15803d;
+    --warning:#b45309;
+    --danger:#b91c1c;
+}
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:var(--page);
+    color:var(--ink);
+}
+
+.site-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    background:var(--blue);
+    color:white;
+    padding:24px clamp(20px, 5vw, 56px);
+}
+
+.site-header h1{
+    margin:0;
+    font-size:clamp(1.7rem, 3vw, 2.4rem);
+}
+
+.eyebrow{
+    margin:0 0 6px;
+    font-size:.78rem;
+    font-weight:bold;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    opacity:.85;
+}
+
+.header-action,
+button{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:42px;
+    border:0;
+    border-radius:6px;
+    background:var(--blue);
+    color:white;
+    padding:10px 18px;
+    font-weight:bold;
+    text-decoration:none;
+    cursor:pointer;
+}
+
+.header-action{
+    background:white;
+    color:var(--blue);
+}
+
+button:hover{
+    background:var(--blue-dark);
+}
+
+.site-nav{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    background:#172033;
+    padding:12px clamp(20px, 5vw, 56px);
+}
+
+.site-nav a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    padding:8px 10px;
+    border-radius:6px;
+}
+
+.site-nav a:hover{
+    background:rgba(255,255,255,.12);
+}
+
+.page-shell{
+    width:min(1120px, calc(100% - 32px));
+    margin:28px auto;
+}
+
+.page-heading{
+    margin-bottom:20px;
+}
+
+.page-heading h2{
+    margin:0 0 8px;
+    font-size:1.6rem;
+}
+
+.page-heading p{
+    margin:0;
+    color:var(--muted);
+}
+
+.ticket-form,
+.panel{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:22px;
+    box-shadow:0 8px 24px rgba(23,32,51,.06);
+}
+
+.ticket-form{
+    max-width:680px;
+}
+
+label{
+    display:block;
+    margin:14px 0 6px;
+    font-weight:bold;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    padding:11px 12px;
+    border:1px solid #c8d2df;
+    border-radius:6px;
+    font:inherit;
+}
+
+textarea{
+    resize:vertical;
+}
+
+.search-box{
+    max-width:360px;
+    margin-bottom:18px;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));
+    gap:16px;
+    margin-bottom:20px;
+}
+
+.card{
+    background:white;
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:18px;
+    box-shadow:0 8px 24px rgba(23,32,51,.06);
+}
+
+.card h3{
+    margin:0 0 10px;
+    color:var(--muted);
+    font-size:.95rem;
+}
+
+.card p{
+    margin:0;
+    color:var(--blue);
+    font-size:2rem;
+    font-weight:bold;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    overflow:hidden;
+}
+
+th,
+td{
+    border-bottom:1px solid var(--line);
+    padding:12px;
+    text-align:left;
+    vertical-align:top;
+}
+
+th{
+    background:#eef4ff;
+    color:#1e3a8a;
+}
+
+.description-row td{
+    color:var(--muted);
+    background:#fafcff;
+    font-size:.95rem;
+}
+
+.priority,
+.status{
+    display:inline-block;
+    border-radius:999px;
+    padding:4px 9px;
+    font-size:.8rem;
+    font-weight:bold;
+}
+
+.priority.low{
+    background:#e0f2fe;
+    color:#0369a1;
+}
+
+.priority.medium,
+.status.pending{
+    background:#fef3c7;
+    color:var(--warning);
+}
+
+.priority.high,
+.priority.critical{
+    background:#fee2e2;
+    color:var(--danger);
+}
+
+.status.resolved{
+    background:#dcfce7;
+    color:var(--success);
+}
+
+.inline-form{
+    margin:0;
+    padding:0;
+    background:transparent;
+    border:0;
+    box-shadow:none;
+}
+
+.inline-form button{
+    min-height:34px;
+    padding:7px 12px;
+}
+
+.flash-list{
+    margin-bottom:18px;
+}
+
+.flash{
+    margin:0 0 8px;
+    padding:12px 14px;
+    border-radius:6px;
+    background:#eef4ff;
+    border:1px solid var(--line);
+}
+
+.flash.success{
+    background:#dcfce7;
+    border-color:#86efac;
+}
+
+.flash.error{
+    background:#fee2e2;
+    border-color:#fecaca;
+}
+
+.empty-state{
+    margin:0;
+    color:var(--muted);
+}
+
+footer{
+    color:var(--muted);
+    padding:20px;
+    text-align:center;
+}
+
+@media (max-width:720px){
+    .site-header{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .panel{
+        overflow-x:auto;
+    }
+}
